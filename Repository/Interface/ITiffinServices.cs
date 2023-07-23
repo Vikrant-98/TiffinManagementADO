@@ -6,7 +6,7 @@ namespace Repository.Interface
     public interface ITiffinServices
     {
         Task<SqlDataReader> GetAllTiffin();
-        Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin);
+        Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin,int Id);
         Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin);
         Task<SqlDataReader> DeleteTiffin(int id);
     }

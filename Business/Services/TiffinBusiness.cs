@@ -39,7 +39,7 @@ namespace Business.Services
 
         }
 
-        public async Task<AddResponse> AddTiffin(AddTiffin addTiffin)
+        public async Task<AddResponse> AddTiffin(AddTiffin addTiffin, int Id)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Business.Services
                     Price = addTiffin.Price,
                 };
 
-                SqlDataReader? dataReader = await _tiffinServices.AddTiffin(addTiffinModifier).ConfigureAwait(false);
+                SqlDataReader? dataReader = await _tiffinServices.AddTiffin(addTiffinModifier,Id).ConfigureAwait(false);
                 AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                 return response;
             }
