@@ -38,7 +38,7 @@ namespace Repository.Services
 
         }
          
-        public async Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin) 
+        public async Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin, int Id) 
         {
             SqlDataReader dataReader;
             try
@@ -51,6 +51,7 @@ namespace Repository.Services
                     command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageUrl);
                     command.Parameters.AddWithValue("@Description", addTiffin.Description);
                     command.Parameters.AddWithValue("@Address", addTiffin.Address);
+                    command.Parameters.AddWithValue("@AdminId", Id);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();

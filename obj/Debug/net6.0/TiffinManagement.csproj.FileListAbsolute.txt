@@ -1,0 +1,91 @@
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\appsettings.Development.json
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\appsettings.json
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\TiffinManagement.exe
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\TiffinManagement.deps.json
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\TiffinManagement.runtimeconfig.json
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\TiffinManagement.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\TiffinManagement.pdb
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.csproj.AssemblyReference.cache
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.GeneratedMSBuildEditorConfig.editorconfig
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.AssemblyInfoInputs.cache
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.AssemblyInfo.cs
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.csproj.CoreCompileInputs.cache
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cs
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cache
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\staticwebassets.build.json
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\staticwebassets.development.json
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\scopedcss\bundle\TiffinManagement.styles.css
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.csproj.CopyComplete
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.dll
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\refint\TiffinManagement.dll
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.pdb
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\TiffinManagement.genruntimeconfig.cache
+D:\vikrant\TiffinManagement\TiffinManagement\obj\Debug\net6.0\ref\TiffinManagement.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\vikrant\TiffinManagement\TiffinManagement\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.csproj.AssemblyReference.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.AssemblyInfoInputs.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.AssemblyInfo.cs
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.csproj.CoreCompileInputs.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\refint\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.pdb
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\appsettings.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\TiffinManagement.exe
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\TiffinManagement.deps.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\TiffinManagement.runtimeconfig.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\TiffinManagement.pdb
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets\msbuild.TiffinManagement.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets\msbuild.build.TiffinManagement.props
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.TiffinManagement.props
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.TiffinManagement.props
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\scopedcss\bundle\TiffinManagement.styles.css
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.csproj.CopyComplete
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.genruntimeconfig.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\obj\Debug\net6.0\ref\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
