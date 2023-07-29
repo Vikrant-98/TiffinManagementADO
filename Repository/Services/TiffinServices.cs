@@ -73,14 +73,15 @@ namespace Repository.Services
             SqlDataReader dataReader;
             try
             {
-                using (SqlCommand command = new SqlCommand("spEditTiffinDetails", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spUpdateTiffinDetails", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Name", addTiffin.Name);
                     command.Parameters.AddWithValue("@Price", addTiffin.Price);
                     command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageUrl);
                     command.Parameters.AddWithValue("@Description", addTiffin.Description);
-                    command.Parameters.AddWithValue("@Address", addTiffin.Address);
+                    command.Parameters.AddWithValue("@TiffinAddress", addTiffin.TiffinAddress);
+                    command.Parameters.AddWithValue("@TiffinId", addTiffin.TiffinId);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();

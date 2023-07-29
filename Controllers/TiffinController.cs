@@ -1,6 +1,9 @@
 ﻿using Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TiffinManagement.ModelServices.ProcessModel;
+using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagementAPI.Controllers
 {
@@ -13,23 +16,55 @@ namespace TiffinManagementAPI.Controllers
             _TiffinBusiness = TiffinBusiness;
         }
 
-        [HttpPost("AddStocks")]
-        public async Task<bool> AddStocks([FromBody] AddStocks userStocks)
+        [HttpGet("GetAllTiffin")]
+        public async Task<List<TiffinDetails>> AddStocks()
         {
-            return true;
+            List<TiffinDetails> tiffinDetails = new List<TiffinDetails>();
+            try 
+            {
+                tiffinDetails = await _TiffinBusiness.GetAllTiffin().ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+            return tiffinDetails;
         }
 
-        [HttpGet("GetAllStocks")]
-        public List<Stocks> GetAllStocks()
+        [HttpPost("AddTiffin")]
+        public async Task<AddResponse> GetAllStocks(AddTiffin addTiffin)
         {
-            return new List<Stocks>();
+            AddResponse? Response = new AddResponse();
+            try
+            {
+                var user = HttpContext.User;
+                int adminID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "AdminID").Value);
+                Response = await _TiffinBusiness.AddTiffin(addTiffin, adminID).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+            return Response;
         }
 
-        [HttpGet("GetAllCustomerStocks")]
-
-        public List<CustomerStocks> GetAllCustomerStocks(int CustomerId)
+        [HttpPost("EditTiffin")]
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin)
         {
-            return new List<CustomerStocks>();
+            AddResponse? Result = new AddResponse();
+            try
+            {
+                var user = HttpContext.User;
+                int adminID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "AdminID").Value);
+                Result = await _TiffinBusiness.EditTiffin(addTiffin).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+            return Result;
         }
 
         [HttpPost("AddCustomerStocks")]
