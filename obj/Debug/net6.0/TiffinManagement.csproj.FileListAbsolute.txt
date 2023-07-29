@@ -89,3 +89,13 @@ C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\ru
 C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Ashwini Khonde\Desktop\Projects\TiffinManagementADO\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.csproj.AssemblyReference.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.AssemblyInfoInputs.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.AssemblyInfo.cs
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.csproj.CoreCompileInputs.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\refint\TiffinManagement.dll
+C:\Users\Ashwini Khonde\Desktop\Projects\New folder\TiffinManagementADO\obj\Debug\net6.0\TiffinManagement.pdb

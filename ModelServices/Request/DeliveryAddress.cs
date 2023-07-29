@@ -10,7 +10,14 @@
     public class UserAddress
     {
         public string Address { get; set; }
-        public int id { get; set; }
+        public int AreaId { get; set; }
+    }
+
+    public class TiffinAddress
+    {
+        public string Address { get; set; }
+        public string Area { get; set; }
+        public string Pin { get; set; }
     }
 
     public class User

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\TiffinManagementADO\\TiffinManagement.csproj": {}
+    "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\New folder\\TiffinManagementADO\\TiffinManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\TiffinManagementADO\\TiffinManagement.csproj": {
+    "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\New folder\\TiffinManagementADO\\TiffinManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\TiffinManagementADO\\TiffinManagement.csproj",
+        "projectUniqueName": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\New folder\\TiffinManagementADO\\TiffinManagement.csproj",
         "projectName": "TiffinManagement",
-        "projectPath": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\TiffinManagementADO\\TiffinManagement.csproj",
+        "projectPath": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\New folder\\TiffinManagementADO\\TiffinManagement.csproj",
         "packagesPath": "C:\\Users\\Ashwini Khonde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\TiffinManagementADO\\obj\\",
+        "outputPath": "C:\\Users\\Ashwini Khonde\\Desktop\\Projects\\New folder\\TiffinManagementADO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ashwini Khonde\\AppData\\Roaming\\NuGet\\NuGet.Config",

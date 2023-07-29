@@ -67,7 +67,6 @@ namespace Repository.Services
             }
             
         }
-
         
         public async Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin)
         {
@@ -98,16 +97,15 @@ namespace Repository.Services
 
         }
 
-        
         public async Task<SqlDataReader> DeleteTiffin(int id)
         {
             SqlDataReader dataReader;
             try
             {
-                using (SqlCommand command = new SqlCommand("spDeleteTiffin", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spDeleteTiffinDetails", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@TiffinId", id);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();

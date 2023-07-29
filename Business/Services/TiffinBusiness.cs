@@ -29,7 +29,7 @@ namespace Business.Services
             try
             {
                  SqlDataReader? dataReader = await _tiffinServices.GetAllTiffin().ConfigureAwait(false);
-                 List<TiffinDetails>? TiffinList = _databaseMapper.GetAllOrders(dataReader);
+                 List<TiffinDetails>? TiffinList = _databaseMapper.GetAllTiffin(dataReader);
                 return TiffinList;
             }
             catch (Exception)
@@ -38,7 +38,7 @@ namespace Business.Services
             }
 
         }
-
+        
         public async Task<AddResponse> AddTiffin(AddTiffin addTiffin, int Id)
         {
             try
@@ -79,8 +79,7 @@ namespace Business.Services
             }
 
         }
-
-
+        
         public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin)
         {
             try
@@ -95,8 +94,7 @@ namespace Business.Services
             }
 
         }
-
-
+        
         public async Task<AddResponse> DeleteTiffin(int id)
         {
             
