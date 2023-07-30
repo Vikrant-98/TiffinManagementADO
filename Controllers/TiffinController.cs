@@ -1,7 +1,6 @@
 ﻿using Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TiffinManagement.ModelServices.ProcessModel;
 using TiffinManagement.ModelServices.Request;
 using TiffinManagement.ModelServices.Response;
 
@@ -17,7 +16,8 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpGet("GetAllTiffin")]
-        public async Task<List<TiffinDetails>> AddStocks()
+        [Authorize(Roles = "Admin")]
+        public async Task<List<TiffinDetails>> GetAllTiffin()
         {
             List<TiffinDetails> tiffinDetails = new List<TiffinDetails>();
             try 
@@ -34,14 +34,15 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpPost("AddTiffin")]
-        public async Task<AddResponse> GetAllStocks(AddTiffin addTiffin)
+        [Authorize(Roles = "Admin")]
+        public async Task<AddResponse> AddTiffin([FromBody] AddTiffinRequest addTiffin)
         {
             AddResponse? Response = new AddResponse();
             try
             {
                 var user = HttpContext.User;
-                int adminID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "AdminID").Value);
-                Response = await _TiffinBusiness.AddTiffin(addTiffin, adminID).ConfigureAwait(false);
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+                Response = await _TiffinBusiness.AddTiffin(addTiffin, userId).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -51,13 +52,14 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpPost("EditTiffin")]
-        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin)
+        [Authorize(Roles = "Admin")]
+        public async Task<AddResponse> EditTiffin([FromBody] AddTiffinModifier addTiffin)
         {
             AddResponse? Result = new AddResponse();
             try
             {
                 var user = HttpContext.User;
-                int adminID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "AdminID").Value);
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
                 Result = await _TiffinBusiness.EditTiffin(addTiffin).ConfigureAwait(false);
             }
             catch (Exception)
@@ -67,20 +69,24 @@ namespace TiffinManagementAPI.Controllers
             return Result;
         }
 
-        [HttpPost("AddCustomerStocks")]
+        [HttpDelete("{TiffinId}")]
         [Authorize(Roles = "Admin")]
-        public async Task<bool> AddCustomerStocks([FromBody] AddCustomerStocks stocks)
+        public async Task<AddResponse> DeleteTiffin(int TiffinId)
         {
+            AddResponse? Result = new AddResponse();
+            try
+            {
+                var user = HttpContext.User;
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+                Result = await _TiffinBusiness.DeleteTiffin(TiffinId).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             
-           return true;
+            return Result;
         }
 
-        [HttpPost("RemoveCustomerStocks")]
-        [Authorize(Roles = "Admin")]
-        public async Task<bool> RemoveCustomerStocks([FromBody] AddCustomerStocks stocks)
-        {
-            
-            return true ;
-        }
     }
 }

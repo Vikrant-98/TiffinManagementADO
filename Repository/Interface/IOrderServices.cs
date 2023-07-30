@@ -9,6 +9,6 @@ namespace TiffinManagement.Repository.Interface
         Task<SqlDataReader> GetAllOrdersByUserId(int UserId);
         Task<SqlDataReader> AddOrdersByUserId(int UserId, AddOrderDetails addOrder);
         Task<SqlDataReader> UpdateOrdersStatus(UpdateOrder updateOrder);
-        Task<SqlDataReader> DeleteOrdersByUserId(int OrderId);
+        Task<SqlDataReader> DeleteOrdersByUserId(int OrderId, int UserId);
     }
 }

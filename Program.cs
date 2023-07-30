@@ -1,7 +1,16 @@
+using Business.Interface;
+using Business.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Repository.Interface;
+using Repository.Services;
 using System.Text;
+using TiffinManagement.Business.Interface;
+using TiffinManagement.Business.Services;
+using TiffinManagement.MapperServices;
+using TiffinManagement.Repository.Interface;
+using TiffinManagement.Repository.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +26,17 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
+
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ITiffinServices, TiffinServices>();
+builder.Services.AddTransient<IOrderServices, OrderServices>();
+builder.Services.AddTransient<IDeliveryServices, DeliveryServices>();
+builder.Services.AddTransient<IUserBusiness, UserBusiness>();
+builder.Services.AddTransient<ITiffinBusiness, TiffinBusiness>();
+builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
+builder.Services.AddTransient<IDeliveryBusiness, DeliveryBusiness>();
+builder.Services.AddTransient<DatabaseMapper>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -70,8 +90,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors("CorsPolicy");
+    app.UseAuthentication();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Store");
+        options.RoutePrefix = "";
+    });
 }
 
 app.UseHttpsRedirection();

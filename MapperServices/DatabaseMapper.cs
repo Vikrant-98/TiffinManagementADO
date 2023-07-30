@@ -35,12 +35,12 @@ namespace TiffinManagement.MapperServices
             return addResponse;
         }
 
-        public List<LoginResponse> ActiveUserResponse(SqlDataReader dataReader)
+        public List<Login> ActiveUserResponse(SqlDataReader dataReader)
         {
-            List<LoginResponse> addResponse = new List<LoginResponse>();
+            List<Login> addResponse = new List<Login>();
             while (dataReader.Read())
             {
-                addResponse.Add(new LoginResponse()
+                addResponse.Add(new Login()
                 {
                     FirstName = dataReader["FirstName"].ToString(),
                     LastName = dataReader["LastName"].ToString(),
@@ -90,12 +90,12 @@ namespace TiffinManagement.MapperServices
             return ordersDetails;
         }
 
-        public LoginResponse LoginResponse(SqlDataReader dataReader)
+        public Login LoginResponse(SqlDataReader dataReader)
         {
-            LoginResponse addResponse = new LoginResponse();
+            Login addResponse = new Login();
             while (dataReader.Read())
             {
-                addResponse = new LoginResponse()
+                addResponse = new Login()
                 {
                     FirstName = dataReader["FirstName"].ToString(),
                     LastName = dataReader["LastName"].ToString(),
@@ -107,12 +107,12 @@ namespace TiffinManagement.MapperServices
             return addResponse;
         }
 
-        public List<LoginResponse> MapGetRoleBaseDetails(SqlDataReader dataReader)
+        public List<Login> MapGetRoleBaseDetails(SqlDataReader dataReader)
         {
-            List<LoginResponse> addResponse = new List<LoginResponse>();
+            List<Login> addResponse = new List<Login>();
             while (dataReader.Read())
             {
-                addResponse.Add(new LoginResponse()
+                addResponse.Add(new Login()
                 {
                     FirstName = dataReader["FirstName"].ToString(),
                     LastName = dataReader["LastName"].ToString(),

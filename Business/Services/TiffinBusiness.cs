@@ -1,16 +1,11 @@
 ﻿using Business.Interface;
-using Repository.Interface;
-using System.Data.SqlClient;
-using System.Data;
-using TiffinManagement.DatabaseServices;
-using TiffinManagement.ModelServices.ProcessModel;
-using TiffinManagement.MapperServices;
-using TiffinManagement.ModelServices.Response;
-using TiffinManagement.ModelServices.Request;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using static System.Net.Mime.MediaTypeNames;
-using System.IO;
+using Repository.Interface;
+using System.Data.SqlClient;
+using TiffinManagement.MapperServices;
+using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 
 namespace Business.Services
 {
@@ -39,32 +34,16 @@ namespace Business.Services
 
         }
         
-        public async Task<AddResponse> AddTiffin(AddTiffin addTiffin, int Id)
+        public async Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id)
         {
             try
             {
-
-                Account account = new Account(
-                      "dw9jw58vv",
-                      "438317129373873",
-                      "9ymO_S3VR-o1qq5xnTRwtbkle0w");
-
-                Cloudinary cloudinary = new Cloudinary(account);
-
-                var path = addTiffin.Image.OpenReadStream();
-
-                var uploadParams = new ImageUploadParams()
-                {
-                    File = new FileDescription(addTiffin.Image.FileName, path)
-                };
-
-                var uploadResult = await cloudinary.UploadAsync(uploadParams);
-
-                AddTiffinModifier addTiffinModifier = new AddTiffinModifier() 
+                var ImageUrl = await PrepareImageUrl(addTiffin.Image).ConfigureAwait(false);
+                AddTiffin addTiffinModifier = new AddTiffin() 
                 {
                     Description = addTiffin.Description,
-                    Address = addTiffin.Address,
-                    ImageUrl = uploadResult.Url.ToString(),
+                    TiffinAddress = addTiffin.TiffinAddress,
+                    ImageURL = ImageUrl,
                     Name = addTiffin.Name,
                     Price = addTiffin.Price,
                 };
@@ -80,11 +59,12 @@ namespace Business.Services
 
         }
         
-        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier editTiffin)
         {
             try
             {
-                SqlDataReader? dataReader = await _tiffinServices.EditTiffin(addTiffin).ConfigureAwait(false);
+                var ImageUrl = await PrepareImageUrl(editTiffin.Image).ConfigureAwait(false);
+                SqlDataReader? dataReader = await _tiffinServices.EditTiffin(editTiffin, ImageUrl).ConfigureAwait(false);
                 AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                 return response;
             }
@@ -109,6 +89,27 @@ namespace Business.Services
                 throw;
             }
 
+        }
+
+        private async Task<string> PrepareImageUrl(IFormFile ImageFile) 
+        {
+            Account account = new Account(
+                      "dw9jw58vv",
+                      "438317129373873",
+                      "9ymO_S3VR-o1qq5xnTRwtbkle0w");
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            var path = ImageFile.OpenReadStream();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(ImageFile.FileName, path)
+            };
+
+            var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+            return uploadResult.Url.ToString();
         }
 
     }

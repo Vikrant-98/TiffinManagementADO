@@ -1,13 +1,13 @@
 ﻿using System.Data.SqlClient;
-using TiffinManagement.ModelServices.ProcessModel;
+using TiffinManagement.ModelServices.Request;
 
 namespace Repository.Interface
 {
     public interface ITiffinServices
     {
         Task<SqlDataReader> GetAllTiffin();
-        Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin,int Id);
-        Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin);
+        Task<SqlDataReader> AddTiffin(AddTiffin addTiffin,int Id);
+        Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin,string ImageUrl);
         Task<SqlDataReader> DeleteTiffin(int id);
     }
 }

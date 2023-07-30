@@ -32,13 +32,13 @@ namespace TiffinManagement.Business.Services
             return OrderDetails;
         }
         
-        public async Task<OrdersDetails> GetAllOrdersByUserId(int UserId)
+        public async Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId)
         {
-            OrdersDetails? OrderDetails = new OrdersDetails();
+            List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
                 SqlDataReader? Details = await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
-                OrderDetails = _databaseMapper.GetAllOrdersById(Details);
+                OrderDetails = _databaseMapper.GetAllOrders(Details);
             }
             catch (Exception)
             {
@@ -77,12 +77,12 @@ namespace TiffinManagement.Business.Services
             return AddResponse;
         }
         
-        public async Task<AddResponse> DeleteOrdersByUserId(int UserId)
+        public async Task<AddResponse> DeleteOrdersByUserId(int OrderId,int UserId)
         {
             AddResponse? AddResponse = new AddResponse();
             try
             {
-                SqlDataReader? Details = await _orderServices.DeleteOrdersByUserId(UserId).ConfigureAwait(false);
+                SqlDataReader? Details = await _orderServices.DeleteOrdersByUserId(OrderId, UserId).ConfigureAwait(false);
                 AddResponse = _databaseMapper.AddUpdateDeleteResponse(Details);
             }
             catch (Exception)

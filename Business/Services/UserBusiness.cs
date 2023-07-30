@@ -17,12 +17,12 @@ namespace TiffinManagement.Business.Services
             _userServices = userServices;
         }
 
-        public async Task<List<LoginResponse>> GetUserActiveDetails()
+        public async Task<List<Login>> GetUserActiveDetails()
         {
             try
             {
                 SqlDataReader? dataReader = await _userServices.GetUserActiveDetails().ConfigureAwait(false);
-                List<LoginResponse>? response = _databaseMapper.ActiveUserResponse(dataReader);
+                List<Login>? response = _databaseMapper.ActiveUserResponse(dataReader);
                 return response;
             }
             catch (Exception)
@@ -32,12 +32,12 @@ namespace TiffinManagement.Business.Services
 
         }
         
-        public async Task<LoginResponse> UserLogin(UserLogin User)
+        public async Task<Login> UserLogin(UserLogin User)
         {
             try
             {
                 SqlDataReader? dataReader = await _userServices.UserLogin(User).ConfigureAwait(false);
-                LoginResponse? response = _databaseMapper.LoginResponse(dataReader);
+                Login? response = _databaseMapper.LoginResponse(dataReader);
                 return response;
             }
             catch (Exception)
@@ -117,9 +117,9 @@ namespace TiffinManagement.Business.Services
 
         }
 
-        public async Task<List<LoginResponse>> GetRoleBaseDetails(string Role) 
+        public async Task<List<Login>> GetRoleBaseDetails(string Role) 
         {
-            List<LoginResponse>? response = new List<LoginResponse>();
+            List<Login>? response = new List<Login>();
             try
             {
                 SqlDataReader? dataReader = await _userServices.GetRoleBaseDetails(Role).ConfigureAwait(false);

@@ -1,8 +1,8 @@
 ﻿using Repository.Interface;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using TiffinManagement.DatabaseServices;
-using TiffinManagement.ModelServices.ProcessModel;
+using TiffinManagement.ModelServices.Request;
 
 namespace Repository.Services
 {
@@ -38,7 +38,7 @@ namespace Repository.Services
 
         }
          
-        public async Task<SqlDataReader> AddTiffin(AddTiffinModifier addTiffin, int Id) 
+        public async Task<SqlDataReader> AddTiffin(AddTiffin addTiffin, int Id) 
         {
             SqlDataReader dataReader;
             try
@@ -48,10 +48,10 @@ namespace Repository.Services
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Name", addTiffin.Name);
                     command.Parameters.AddWithValue("@Price", addTiffin.Price);
-                    command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageUrl);
+                    command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageURL);
                     command.Parameters.AddWithValue("@Description", addTiffin.Description);
-                    command.Parameters.AddWithValue("@Address", addTiffin.Address);
-                    command.Parameters.AddWithValue("@AdminId", Id);
+                    command.Parameters.AddWithValue("@Address", addTiffin.TiffinAddress);
+                    command.Parameters.AddWithValue("@userId", Id);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
@@ -68,7 +68,7 @@ namespace Repository.Services
             
         }
         
-        public async Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin)
+        public async Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin, string ImageUrl)
         {
             SqlDataReader dataReader;
             try
@@ -78,7 +78,7 @@ namespace Repository.Services
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Name", addTiffin.Name);
                     command.Parameters.AddWithValue("@Price", addTiffin.Price);
-                    command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageUrl);
+                    command.Parameters.AddWithValue("@ImageUrl", ImageUrl);
                     command.Parameters.AddWithValue("@Description", addTiffin.Description);
                     command.Parameters.AddWithValue("@TiffinAddress", addTiffin.TiffinAddress);
                     command.Parameters.AddWithValue("@TiffinId", addTiffin.TiffinId);

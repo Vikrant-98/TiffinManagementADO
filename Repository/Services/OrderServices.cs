@@ -119,7 +119,7 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<SqlDataReader> DeleteOrdersByUserId(int OrderId)
+        public async Task<SqlDataReader> DeleteOrdersByUserId(int OrderId,int UserId)
         {
             SqlDataReader dataReader;
             try
@@ -128,6 +128,7 @@ namespace TiffinManagement.Repository.Services
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@OrderID", OrderId);
+                    command.Parameters.AddWithValue("@UserID", UserId);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
