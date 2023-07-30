@@ -32,11 +32,11 @@ namespace Business.Services
 
         }
         
-        public async Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id)
+        public async Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id, IFormFile formFile)
         {
             try
             {
-                var ImageUrl = await PrepareImageUrl(addTiffin.Image).ConfigureAwait(false);
+                var ImageUrl = await PrepareImageUrl(formFile).ConfigureAwait(false);
                 AddTiffin addTiffinModifier = new AddTiffin() 
                 {
                     Description = addTiffin.Description,
@@ -56,11 +56,11 @@ namespace Business.Services
 
         }
         
-        public async Task<AddResponse> EditTiffin(AddTiffinModifier editTiffin)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier editTiffin, IFormFile Image)
         {
             try
             {
-                var ImageUrl = await PrepareImageUrl(editTiffin.Image).ConfigureAwait(false);
+                var ImageUrl = await PrepareImageUrl(Image).ConfigureAwait(false);
                 return await _tiffinServices.EditTiffin(editTiffin, ImageUrl).ConfigureAwait(false);                
             }
             catch (Exception)

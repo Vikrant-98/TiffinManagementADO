@@ -35,14 +35,14 @@ namespace TiffinManagementAPI.Controllers
 
         [HttpPost("AddTiffin")]
         [Authorize(Roles = "Admin")]
-        public async Task<AddResponse> AddTiffin([FromBody] AddTiffinRequest addTiffin)
+        public async Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, IFormFile Image)
         {
             AddResponse? Response = new AddResponse();
             try
             {
                 var user = HttpContext.User;
                 int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
-                Response = await _TiffinBusiness.AddTiffin(addTiffin, userId).ConfigureAwait(false);
+                Response = await _TiffinBusiness.AddTiffin(addTiffin, userId, Image).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -53,14 +53,14 @@ namespace TiffinManagementAPI.Controllers
 
         [HttpPost("EditTiffin")]
         [Authorize(Roles = "Admin")]
-        public async Task<AddResponse> EditTiffin([FromBody] AddTiffinModifier addTiffin)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin, IFormFile Image)
         {
             AddResponse? Result = new AddResponse();
             try
             {
                 var user = HttpContext.User;
                 int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
-                Result = await _TiffinBusiness.EditTiffin(addTiffin).ConfigureAwait(false);
+                Result = await _TiffinBusiness.EditTiffin(addTiffin, Image).ConfigureAwait(false);
             }
             catch (Exception)
             {

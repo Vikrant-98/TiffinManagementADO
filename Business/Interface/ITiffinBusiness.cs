@@ -6,8 +6,8 @@ namespace Business.Interface
     public interface ITiffinBusiness
     {
         Task<List<TiffinDetails>> GetAllTiffin();
-        Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id);
-        Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin);
+        Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id,IFormFile formFile);
+        Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin,IFormFile formFile);
         Task<AddResponse> DeleteTiffin(int id);
     }
 }
