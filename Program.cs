@@ -8,6 +8,7 @@ using Repository.Services;
 using System.Text;
 using TiffinManagement.Business.Interface;
 using TiffinManagement.Business.Services;
+using TiffinManagement.DatabaseServices;
 using TiffinManagement.MapperServices;
 using TiffinManagement.Repository.Interface;
 using TiffinManagement.Repository.Services;
@@ -36,6 +37,7 @@ builder.Services.AddTransient<ITiffinBusiness, TiffinBusiness>();
 builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
 builder.Services.AddTransient<IDeliveryBusiness, DeliveryBusiness>();
 builder.Services.AddTransient<DatabaseMapper>();
+builder.Services.AddTransient<DBContext>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
