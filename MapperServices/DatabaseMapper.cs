@@ -7,19 +7,28 @@ namespace TiffinManagement.MapperServices
     {
         public List<TiffinDetails> GetAllTiffin(SqlDataReader dataReader) 
         {
-            List<TiffinDetails> bookList = new List<TiffinDetails>();
-            while (dataReader.Read())
+            try
             {
-                bookList.Add(new TiffinDetails
+                List<TiffinDetails> bookList = new List<TiffinDetails>();
+                while (dataReader.Read())
                 {
-                    Id = Convert.ToInt32(dataReader["ID"]),
-                    Name = dataReader["Name"].ToString(),
-                    Description = dataReader["Description"].ToString(),
-                    Price = Convert.ToInt32(dataReader["Price"]),
-                    Image = dataReader["Images"].ToString()
-                });
+                    bookList.Add(new TiffinDetails
+                    {
+                        Id = Convert.ToInt32(dataReader["Id"]),
+                        Name = dataReader["TiffinName"].ToString(),
+                        Description = dataReader["TiffinDescription"].ToString(),
+                        Price = Convert.ToInt32(dataReader["Price"]),
+                        Image = dataReader["ImageURL"].ToString(),
+                        Area = dataReader["Area"].ToString()
+                    });
+                }
+                return bookList;
             }
-            return bookList;
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         public AddResponse AddUpdateDeleteResponse(SqlDataReader dataReader) 
