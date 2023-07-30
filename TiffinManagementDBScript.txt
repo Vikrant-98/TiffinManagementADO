@@ -811,4 +811,21 @@ end
 GO
 
 
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetTiffinDetails]    Script Date: 30-07-2023 17:29:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spGetTiffinDetails]
+as
+begin 
+		select TD.Id,TiffinName,Price,ImageURL,TiffinDescription,AD.Area from TiffinDetails TD inner join AddressDetails AD on AD.Id = TD.TiffinAddress where IsDeleted = 0	
+end
+GO
+
 
