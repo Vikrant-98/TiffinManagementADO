@@ -1,0 +1,814 @@
+USE [TiffinManagement]
+GO
+
+/****** Object:  Table [dbo].[AddressDetails]    Script Date: 30-07-2023 14:28:45 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AddressDetails](
+	[Id] [int] IDENTITY(101,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Address] [varchar](500) NULL,
+	[Area] [varchar](225) NULL,
+	[Pin] [varchar](6) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  Table [dbo].[OrderDetails]    Script Date: 30-07-2023 14:29:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OrderDetails](
+	[Id] [int] IDENTITY(101,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[TiffinId] [int] NOT NULL,
+	[Status] [varchar](225) NULL,
+	[IsDeleted] [bit] NULL,
+	[StartDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+	[AddressId] [int] NULL,
+	[DeliveryHolderId] [int] NULL,
+	[PaymentMode] [varchar](225) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  Table [dbo].[TiffinDetails]    Script Date: 30-07-2023 14:29:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TiffinDetails](
+	[Id] [int] IDENTITY(101,1) NOT NULL,
+	[TiffinName] [varchar](255) NOT NULL,
+	[Price] [varchar](255) NULL,
+	[ImageURL] [varchar](255) NULL,
+	[TiffinDescription] [varchar](255) NULL,
+	[TiffinAddress] [int] NULL,
+	[IsDeleted] [bit] NULL,
+	[AdminId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  Table [dbo].[UserAddressDetails]    Script Date: 30-07-2023 14:29:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[UserAddressDetails](
+	[Id] [int] IDENTITY(101,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Address] [varchar](500) NULL,
+	[AreaId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  Table [dbo].[UserDetails]    Script Date: 30-07-2023 14:30:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[UserDetails](
+	[Id] [int] IDENTITY(101,1) NOT NULL,
+	[FirstName] [varchar](255) NOT NULL,
+	[LastName] [varchar](255) NULL,
+	[EmailId] [varchar](255) NULL,
+	[UserPassword] [varchar](255) NULL,
+	[AadharNumber] [varchar](255) NULL,
+	[Role] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddAddress]    Script Date: 30-07-2023 14:31:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE procedure [dbo].[spAddAddress]
+
+(
+		@Area varchar(255),
+		@Address varchar(500),
+		@Pin varchar(6),
+		@UserId int
+)
+
+AS
+BEGIN 
+	
+	declare @RecordInserted int
+
+		INSERT INTO AddressDetails(
+		UserId,
+		Address,
+		Area,
+		Pin)
+		VALUES(@UserId,
+		@Address,
+        @Area,
+		@Pin);
+
+		select RecordInserted = @@ROWCOUNT;
+
+		if(@RecordInserted > 0)
+		begin
+			select 'AddressDetails Register Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+	
+END 
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddAddress]    Script Date: 30-07-2023 14:31:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddOrderDetails]    Script Date: 30-07-2023 14:31:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[spAddOrderDetails]
+
+(
+		@UserId int,
+		@TiffinId int,
+		@AddressId int,
+		@PaymentMode varchar(255),
+		@StartDate datetime2(7),
+		@EndDate datetime2(7)
+)
+
+AS
+BEGIN 
+	
+	declare @RecordInserted int
+	
+		INSERT INTO OrderDetails(UserId
+           ,TiffinId
+           ,AddressId
+           ,StartDate
+           ,EndDate
+           ,IsDeleted
+           ,Status
+		   ,PaymentMode)
+		VALUES(@UserId,
+		@TiffinId,
+        @AddressId,
+		@StartDate,
+		@EndDate,
+		0,
+		'Order Placed',
+		@PaymentMode);
+
+		select RecordInserted = @@ROWCOUNT;
+
+		if(@RecordInserted > 0)
+		begin
+			select 'Order Details Inserted Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+END 
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddTiffinDetails]    Script Date: 30-07-2023 14:32:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[spAddTiffinDetails]
+
+(
+        @Name varchar(225),
+		@Price int,
+        @ImageUrl varchar(225),
+		@Description varchar(255),
+		@Address int,
+		@AdminId int
+)
+
+AS
+BEGIN 
+	
+	if not exists (select Id from TiffinDetails where TiffinName = @Name and IsDeleted = 0)
+	begin
+		INSERT INTO TiffinDetails(TiffinName
+           ,Price
+           ,ImageURL
+           ,TiffinDescription
+           ,TiffinAddress
+           ,IsDeleted
+           ,AdminId)
+		VALUES(@Name,
+		@Price,
+        @ImageUrl,
+		@Description,
+		@Address,
+		0,
+		@AdminId);
+
+		select 'Tiffin Details Inserted Succesfully' Message from TiffinDetails where TiffinName = @Name;
+
+	end 
+	else
+	begin
+		select 'Tiffin Details Already Exist' Message from TiffinDetails where TiffinName = @Name;
+	end
+
+END 
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddUserAddress]    Script Date: 30-07-2023 14:32:36 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+Create procedure [dbo].[spAddUserAddress]
+
+(
+		@AreaId int,
+		@Address varchar(500),
+		@UserId int
+)
+
+AS
+BEGIN 
+	
+	declare @RecordInserted int
+
+		INSERT INTO UserAddressDetails(
+		UserId,
+		Address,
+		AreaId)
+		VALUES(@UserId,
+		@Address,
+        @AreaId);
+
+		select RecordInserted = @@ROWCOUNT;
+
+		if(@RecordInserted > 0)
+		begin
+			select 'AddressDetails Register Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+	
+END 
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spAddUserDetail]    Script Date: 30-07-2023 14:32:56 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spAddUserDetail]
+@FirstName varchar(255),
+@LastName varchar(255),
+@EmailID varchar(255),
+@Password varchar(255),
+@Role varchar(50),
+@AadharNumber varchar(255)
+as
+begin 
+
+declare @RecordInserted int
+
+	if not exists (select EmailId from UserDetails where EmailId = @EmailID or AadharNumber = @AadharNumber)
+	begin
+		insert into UserDetails(FirstName,LastName,Role,EmailId,UserPassword,AadharNumber)
+		values (@FirstName, @LastName , @Role , @EmailID , @Password, @AadharNumber);
+
+		select @RecordInserted = @@ROWCOUNT;
+		
+		if(@RecordInserted > 0)
+		begin
+			select 'User Register Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	end
+	else
+	begin
+		select 'User Already Exist' as ResponseMessage
+	end
+
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spDeleteOrderDetails]    Script Date: 30-07-2023 14:33:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spDeleteOrderDetails]
+(
+@OrderID int,
+@UserID int
+)
+as
+begin
+	if exists(select * from OrderDetails where Id = @OrderID)
+	begin
+	declare @RecordInserted int = 0
+ 
+	 update OrderDetails
+			set IsDeleted = 1
+			where Id = @OrderID and UserId = @UserID
+
+	 select RecordInserted = @@ROWCOUNT;
+	 
+	 if(@RecordInserted > 0)
+		begin
+			select 'Order Details Deleted Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	 end
+	 else
+	 begin
+		select 'No Such Record Exist' as ResponseMessage
+	 end
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spDeleteTiffinDetails]    Script Date: 30-07-2023 14:33:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spDeleteTiffinDetails]
+@TiffinID int
+as
+begin
+	if exists(select * from TiffinDetails where Id = @TiffinID)
+	begin
+	declare @RecordInserted int = 0
+ 
+	 update TiffinDetails
+			set IsDeleted = 1
+			where Id = @TiffinID
+
+	 select RecordInserted = @@ROWCOUNT;
+	 
+	 if(@RecordInserted > 0)
+		begin
+			select 'Order Details Deleted Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	 end	
+	 else
+	 begin
+		select 'No Such Record Exist' as ResponseMessage
+	 end
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetActiveUserDetails]    Script Date: 30-07-2023 14:33:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spGetActiveUserDetails]
+as
+begin 
+		select 
+			FirstName,
+			LastName,
+			EmailId,
+			AadharNumber,
+			Role
+		from UserDetails
+		where Role = 'Customer'
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetOrderDetails]    Script Date: 30-07-2023 14:34:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spGetOrderDetails]
+as
+begin 
+		select 
+			TD.TiffinName,
+			TD.TiffinDescription,
+			TD.ImageURL,
+			TD.Price,
+			OD.StartDate,
+			OD.EndDate,
+			UD.FirstName
+		from OrderDetails OD 
+			inner join 
+			 TiffinDetails TD on TD.Id = OD.TiffinId
+			inner join 
+			 UserDetails UD on UD.Id = OD.UserId
+		where OD.IsDeleted = 0 and TD.IsDeleted = 0
+end
+GO
+
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetOrderDetailsByUserId]    Script Date: 30-07-2023 14:34:41 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[spGetOrderDetailsByUserId]
+(
+		@UserId int
+)
+as
+begin 
+		select 
+			TD.TiffinName,
+			TD.TiffinDescription,
+			TD.ImageURL,
+			TD.Price,
+			OD.StartDate,
+			OD.EndDate,
+			OD.Status,
+			UD.FirstName
+		from OrderDetails OD 
+			inner join 
+			 TiffinDetails TD on TD.Id = OD.TiffinId
+			inner join 
+			 UserDetails UD on UD.Id = OD.UserId
+		where OD.IsDeleted = 0 and TD.IsDeleted = 0 and UserId = @UserId	
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetRoleDetails]    Script Date: 30-07-2023 14:34:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create procedure [dbo].[spGetRoleDetails]
+(
+	@Role varchar(255)
+)
+as
+begin 
+		select * from UserDetails where Role = @Role	
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spGetTiffinDetails]    Script Date: 30-07-2023 14:35:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create procedure [dbo].[spGetTiffinDetails]
+as
+begin 
+		select * from [dbo].[TiffinDetails] where IsDeleted = 0	
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spUpdateOrderDetails]    Script Date: 30-07-2023 14:36:19 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create procedure [dbo].[spUpdateOrderDetails]
+@OrderID int,
+@Status varchar(255),
+@DeliveryHolderId int
+as
+begin
+	if exists(select * from OrderDetails where Id = @OrderID)
+	begin
+	declare @RecordInserted int = 0
+ 
+	 update OrderDetails
+			set DeliveryHolderId = @DeliveryHolderId,
+				Status = @Status
+			where Id = @OrderID
+
+	 select RecordInserted = @@ROWCOUNT;
+	 
+	 if(@RecordInserted > 0)
+		begin
+			select 'Order Details Updated Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	 end	 
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spUpdateTiffinDetails]    Script Date: 30-07-2023 14:36:41 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[spUpdateTiffinDetails]
+@TiffinId int,
+@TiffinAddress int,
+@Price int,
+@Name varchar(255)='',
+@ImageUrl varchar(255)='',
+@Description varchar(255)=''
+as
+begin
+	if exists(select * from TiffinDetails where Id = @TiffinId)
+	begin
+	declare @TempName varchar(255),
+			@TempImageUrl varchar(255),
+			@TempDescription varchar(255),
+			@TempAddressId int = 0,
+			@TempPrice int = 0,
+			@RecordInserted int = 0
+
+	select @TempName = TiffinName,
+		   @TempImageUrl = ImageURL,
+		   @TempPrice = Price,
+		   @TempAddressId = TiffinAddress,
+		   @TempDescription = TiffinDescription
+	 from TiffinDetails where Id = @TiffinId
+
+	 if(@Name = '')
+	 begin
+		select @Name = @TempName
+	 end
+
+	 if(@ImageUrl = '')
+	 begin
+		select @ImageUrl = @TempImageUrl
+	 end
+
+	 if(@Description = '')
+	 begin
+		select @Description = @TempDescription
+	 end
+
+	 if(@TiffinAddress <= 0)
+	 begin
+		select @TiffinAddress = @TempAddressId
+	 end
+
+	 if(@Price <= 0)
+	 begin
+		select @Price = @TempPrice
+	 end
+	 
+	 update TiffinDetails
+			set TiffinName = @Name,
+				TiffinDescription = @Description,
+				TiffinAddress = @TiffinAddress,
+				ImageURL = @ImageUrl,
+				Price = @Price
+			where Id = @TiffinId
+
+	 select RecordInserted = @@ROWCOUNT;
+	 
+	 if(@RecordInserted > 0)
+		begin
+			select 'Tiffin Details Updated Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	 end	 
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spUpdateUserDetails]    Script Date: 30-07-2023 14:36:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create procedure [dbo].[spUpdateUserDetails]
+@UserID int,
+@FirstName varchar(255)='',
+@LastName varchar(255)='',
+@Password varchar(255)=''
+as
+begin
+	if exists(select * from UserDetails where Id = @UserID)
+	begin
+	declare @TempFirstName varchar(255),
+			@TempLastName varchar(255),
+			@TempPassword varchar(255),
+			@RecordInserted int = 0
+
+	select @TempFirstName = FirstName,
+		   @TempLastName = LastName,
+		   @TempPassword = UserPassword
+	 from UserDetails where Id = @UserID
+
+	 if(@FirstName = '')
+	 begin
+		select @FirstName = @TempFirstName
+	 end
+	 if(@LastName = '')
+	 begin
+		select @LastName = @TempLastName
+	 end
+	 if(@Password = '')
+	 begin
+		select @Password = @TempPassword
+	 end
+	 
+	 update UserDetails
+			set FirstName = @FirstName,
+				LastName = @LastName,
+				UserPassword = @Password
+			where Id = @UserID
+
+	 select RecordInserted = @@ROWCOUNT;
+	 
+	 if(@RecordInserted > 0)
+		begin
+			select 'User Details Updated Succesfully' as ResponseMessage
+		end
+		else
+		begin
+			select 'Something Went Wrong' as ResponseMessage
+		end
+
+	 end	 
+end
+GO
+
+USE [TiffinManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spUserLogin]    Script Date: 30-07-2023 14:38:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[spUserLogin]
+
+(
+        @EmailId varchar(50),
+        @Password varchar(50)
+)
+
+AS
+BEGIN 
+	SELECT * FROM UserDetails WHERE EmailId = @EmailId and UserPassword = @Password;
+end
+GO
+
+
+
