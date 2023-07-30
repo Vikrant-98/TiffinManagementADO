@@ -23,7 +23,7 @@ namespace TiffinManagement.Business.Services
             try
             {
                 var Details = await _orderServices.GetAllOrders().ConfigureAwait(false);
-                OrderDetails = _databaseMapper.GetAllOrders(Details);                
+                              
             }
             catch (Exception)
             {
@@ -37,14 +37,12 @@ namespace TiffinManagement.Business.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
-                SqlDataReader? Details = await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
-                OrderDetails = _databaseMapper.GetAllOrders(Details);
+                return await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
             }
             catch (Exception)
             {
                 throw;
             }
-            return OrderDetails;
         }
         
         public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder)
@@ -52,14 +50,12 @@ namespace TiffinManagement.Business.Services
             AddResponse? AddResponse = new AddResponse();
             try
             {
-                SqlDataReader? Details = await _orderServices.AddOrdersByUserId(UserId,addOrder).ConfigureAwait(false);
-                AddResponse = _databaseMapper.AddUpdateDeleteResponse(Details);
+               return await _orderServices.AddOrdersByUserId(UserId,addOrder).ConfigureAwait(false);
             }
             catch (Exception)
             {
                 throw;
             }
-            return AddResponse;
         }
         
         public async Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder)
@@ -67,14 +63,12 @@ namespace TiffinManagement.Business.Services
             AddResponse? AddResponse = new AddResponse();
             try
             {
-                SqlDataReader? Details = await _orderServices.UpdateOrdersStatus(updateOrder).ConfigureAwait(false);
-                AddResponse = _databaseMapper.AddUpdateDeleteResponse(Details);
+                return await _orderServices.UpdateOrdersStatus(updateOrder).ConfigureAwait(false);                
             }
             catch (Exception)
             {
                 throw;
             }
-            return AddResponse;
         }
         
         public async Task<AddResponse> DeleteOrdersByUserId(int OrderId,int UserId)
@@ -82,14 +76,12 @@ namespace TiffinManagement.Business.Services
             AddResponse? AddResponse = new AddResponse();
             try
             {
-                SqlDataReader? Details = await _orderServices.DeleteOrdersByUserId(OrderId, UserId).ConfigureAwait(false);
-                AddResponse = _databaseMapper.AddUpdateDeleteResponse(Details);
+                return await _orderServices.DeleteOrdersByUserId(OrderId, UserId).ConfigureAwait(false);                
             }
             catch (Exception)
             {
                 throw;
             }
-            return AddResponse;
         }
 
     }

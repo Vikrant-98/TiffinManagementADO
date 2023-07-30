@@ -2,21 +2,26 @@
 using System.Data;
 using System.Data.SqlClient;
 using TiffinManagement.DatabaseServices;
+using TiffinManagement.MapperServices;
 using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 
 namespace Repository.Services
 {
     public class TiffinServices : ITiffinServices
     {
         private readonly DBService _dBService;
-        public TiffinServices(DBService dBService)
+        private readonly DatabaseMapper _databaseMapper;
+        public TiffinServices(DBService dBService, DatabaseMapper databaseMapper)
         {
             _dBService = dBService;
+            _databaseMapper = databaseMapper;
         }
 
-        public async Task<SqlDataReader> GetAllTiffin()
+        public async Task<List<TiffinDetails>> GetAllTiffin()
         {
             SqlDataReader dataReader;
+            List<TiffinDetails>? TiffinList = new List<TiffinDetails>();
             try
             {
                 using (SqlCommand command = new SqlCommand("spGetTiffinDetails", _dBService.Connection))
@@ -25,11 +30,12 @@ namespace Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    TiffinList = _databaseMapper.GetAllTiffin(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return TiffinList;
             }
             catch (Exception)
             {
@@ -38,9 +44,10 @@ namespace Repository.Services
 
         }
          
-        public async Task<SqlDataReader> AddTiffin(AddTiffin addTiffin, int Id) 
+        public async Task<AddResponse> AddTiffin(AddTiffin addTiffin, int Id) 
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddTiffinDetails", _dBService.Connection))
@@ -55,11 +62,12 @@ namespace Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
@@ -68,9 +76,10 @@ namespace Repository.Services
             
         }
         
-        public async Task<SqlDataReader> EditTiffin(AddTiffinModifier addTiffin, string ImageUrl)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin, string ImageUrl)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spUpdateTiffinDetails", _dBService.Connection))
@@ -85,11 +94,12 @@ namespace Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
@@ -98,9 +108,10 @@ namespace Repository.Services
 
         }
 
-        public async Task<SqlDataReader> DeleteTiffin(int id)
+        public async Task<AddResponse> DeleteTiffin(int id)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spDeleteTiffinDetails", _dBService.Connection))
@@ -110,11 +121,11 @@ namespace Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
-
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {

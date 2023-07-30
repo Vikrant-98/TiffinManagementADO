@@ -37,7 +37,7 @@ builder.Services.AddTransient<ITiffinBusiness, TiffinBusiness>();
 builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
 builder.Services.AddTransient<IDeliveryBusiness, DeliveryBusiness>();
 builder.Services.AddTransient<DatabaseMapper>();
-builder.Services.AddTransient<DBContext>();
+builder.Services.AddTransient<DBService>(_=> new DBService(builder.Configuration.GetSection("MasterConnection").Get<string>()));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -95,11 +95,7 @@ if (app.Environment.IsDevelopment())
     app.UseCors("CorsPolicy");
     app.UseAuthentication();
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Store");
-        options.RoutePrefix = "";
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

@@ -21,9 +21,7 @@ namespace TiffinManagement.Business.Services
         {
             try
             {
-                SqlDataReader? dataReader = await _userServices.GetUserActiveDetails().ConfigureAwait(false);
-                List<Login>? response = _databaseMapper.ActiveUserResponse(dataReader);
-                return response;
+                return await _userServices.GetUserActiveDetails().ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -36,9 +34,7 @@ namespace TiffinManagement.Business.Services
         {
             try
             {
-                SqlDataReader? dataReader = await _userServices.UserLogin(User).ConfigureAwait(false);
-                Login? response = _databaseMapper.LoginResponse(dataReader);
-                return response;
+                return await _userServices.UserLogin(User).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -51,9 +47,7 @@ namespace TiffinManagement.Business.Services
         {
             try
             {
-                SqlDataReader? dataReader = await _userServices.AddUser(User).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _userServices.AddUser(User).ConfigureAwait(false);                
             }
             catch (Exception)
             {
@@ -66,9 +60,8 @@ namespace TiffinManagement.Business.Services
         {
             try
             {
-                SqlDataReader? dataReader = await _userServices.AddUserAddress(UserAddress, UserId).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _userServices.AddUserAddress(UserAddress, UserId).ConfigureAwait(false);
+                
             }
             catch (Exception)
             {
@@ -81,9 +74,8 @@ namespace TiffinManagement.Business.Services
         {
             try
             {
-                SqlDataReader? dataReader = await _userServices.AddAddress(TiffinAddress, UserId).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _userServices.AddAddress(TiffinAddress, UserId).ConfigureAwait(false);
+                
             }
             catch (Exception)
             {
@@ -106,9 +98,8 @@ namespace TiffinManagement.Business.Services
                     Password = TiffinAddress.Password,
                     Role = TiffinAddress.Role
                 };
-                SqlDataReader? dataReader = await _userServices.UpdateUser(updateUser).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _userServices.UpdateUser(updateUser).ConfigureAwait(false);
+                
             }
             catch (Exception)
             {
@@ -122,15 +113,12 @@ namespace TiffinManagement.Business.Services
             List<Login>? response = new List<Login>();
             try
             {
-                SqlDataReader? dataReader = await _userServices.GetRoleBaseDetails(Role).ConfigureAwait(false);
-                response = _databaseMapper.MapGetRoleBaseDetails(dataReader);
+                return await _userServices.GetRoleBaseDetails(Role).ConfigureAwait(false);                
             }
             catch (Exception)
             {
                 throw;
-            }
-            
-            return response;
+            }            
         }
 
     }

@@ -3,20 +3,25 @@ using System.Data;
 using TiffinManagement.DatabaseServices;
 using TiffinManagement.ModelServices.Request;
 using TiffinManagement.Repository.Interface;
+using TiffinManagement.MapperServices;
+using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagement.Repository.Services
 {
     public class OrderServices : IOrderServices
     {
         private readonly DBService _dBService;
-        public OrderServices(DBService dBService)
+        private readonly DatabaseMapper _databaseMapper;
+        public OrderServices(DBService dBService, DatabaseMapper databaseMapper)
         {
             _dBService = dBService;
+            _databaseMapper = databaseMapper;
         }
 
-        public async Task<SqlDataReader> GetAllOrders()
+        public async Task<List<OrdersDetails>> GetAllOrders()
         {
             SqlDataReader dataReader;
+            List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
                 using (SqlCommand command = new SqlCommand("spGetTiffinDetails", _dBService.Connection))
@@ -25,11 +30,12 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    OrderDetails = _databaseMapper.GetAllOrders(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return OrderDetails;
             }
             catch (Exception)
             {
@@ -38,9 +44,10 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<SqlDataReader> GetAllOrdersByUserId(int UserId)
+        public async Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId)
         {
             SqlDataReader dataReader;
+            List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
                 using (SqlCommand command = new SqlCommand("spGetOrderDetailsByUserId", _dBService.Connection))
@@ -49,11 +56,12 @@ namespace TiffinManagement.Repository.Services
                     command.Parameters.AddWithValue("@UserId", UserId);
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    OrderDetails = _databaseMapper.GetAllOrders(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return OrderDetails;
             }
             catch (Exception)
             {
@@ -62,9 +70,10 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<SqlDataReader> AddOrdersByUserId(int UserId, AddOrderDetails addOrder) 
+        public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder) 
         {
             SqlDataReader dataReader;
+            AddResponse response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddOrderDetails", _dBService.Connection))
@@ -79,11 +88,12 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
@@ -92,9 +102,10 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<SqlDataReader> UpdateOrdersStatus(UpdateOrder updateOrder)
+        public async Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder)
         {
             SqlDataReader dataReader;
+            AddResponse response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddOrderDetails", _dBService.Connection))
@@ -106,11 +117,12 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
@@ -119,9 +131,10 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<SqlDataReader> DeleteOrdersByUserId(int OrderId,int UserId)
+        public async Task<AddResponse> DeleteOrdersByUserId(int OrderId,int UserId)
         {
             SqlDataReader dataReader;
+            AddResponse response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spDeleteOrderDetails", _dBService.Connection))
@@ -132,11 +145,12 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {

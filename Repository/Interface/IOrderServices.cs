@@ -1,14 +1,15 @@
 ﻿using System.Data.SqlClient;
 using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagement.Repository.Interface
 {
     public interface IOrderServices
     {
-        Task<SqlDataReader> GetAllOrders();
-        Task<SqlDataReader> GetAllOrdersByUserId(int UserId);
-        Task<SqlDataReader> AddOrdersByUserId(int UserId, AddOrderDetails addOrder);
-        Task<SqlDataReader> UpdateOrdersStatus(UpdateOrder updateOrder);
-        Task<SqlDataReader> DeleteOrdersByUserId(int OrderId, int UserId);
+        Task<List<OrdersDetails>> GetAllOrders();
+        Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId);
+        Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder);
+        Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder);
+        Task<AddResponse> DeleteOrdersByUserId(int OrderId, int UserId);
     }
 }

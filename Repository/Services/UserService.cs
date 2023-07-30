@@ -1,7 +1,9 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using TiffinManagement.DatabaseServices;
+using TiffinManagement.MapperServices;
 using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 using TiffinManagement.Repository.Interface;
 
 namespace TiffinManagement.Repository.Services
@@ -10,14 +12,17 @@ namespace TiffinManagement.Repository.Services
     {
 
         private readonly DBService _dBService;
-        public UserService(DBService dBService) 
+        private readonly DatabaseMapper _databaseMapper;
+        public UserService(DBService dBService, DatabaseMapper databaseMapper) 
         {
+            _databaseMapper = databaseMapper;
             _dBService = dBService;
         }
         
-        public async Task<SqlDataReader> AddUser(UserRegistration User)
+        public async Task<AddResponse> AddUser(UserRegistration User)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddUserDetail", _dBService.Connection))
@@ -32,20 +37,22 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<SqlDataReader> GetUserActiveDetails()
+        public async Task<List<Login>> GetUserActiveDetails()
         {
             SqlDataReader dataReader;
+            List<Login>? response = new List<Login>();
             try
             {
                 using (SqlCommand command = new SqlCommand("spGetActiveUserDetails", _dBService.Connection))
@@ -53,19 +60,21 @@ namespace TiffinManagement.Repository.Services
                     command.CommandType = CommandType.StoredProcedure;
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.ActiveUserResponse(dataReader);
                     _dBService.Connection.Close();
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }        
-        public async Task<SqlDataReader> UserLogin(UserLogin User)
+        public async Task<Login> UserLogin(UserLogin User)
         {
             SqlDataReader dataReader;
+            Login? response = new Login();
             try
             {
                 using (SqlCommand command = new SqlCommand("spUserLogin", _dBService.Connection))
@@ -76,20 +85,22 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.LoginResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }        
-        public async Task<SqlDataReader> UpdateUser(UpdateUser User)
+        public async Task<AddResponse> UpdateUser(UpdateUser User)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spUpdateUserDetails", _dBService.Connection))
@@ -103,20 +114,22 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<SqlDataReader> AddUserAddress(UserAddress Address,int UserId)
+        public async Task<AddResponse> AddUserAddress(UserAddress Address,int UserId)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddUserAddress", _dBService.Connection))
@@ -128,20 +141,22 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                   response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<SqlDataReader> AddAddress(TiffinAddress Address, int UserId)
+        public async Task<AddResponse> AddAddress(TiffinAddress Address, int UserId)
         {
             SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
             try
             {
                 using (SqlCommand command = new SqlCommand("spAddUserAddress", _dBService.Connection))
@@ -154,20 +169,22 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<SqlDataReader> GetRoleBaseDetails(string Role)
+        public async Task<List<Login>> GetRoleBaseDetails(string Role)
         {
             SqlDataReader dataReader;
+            List<Login>? response = new List<Login>();
             try
             {
                 using (SqlCommand command = new SqlCommand("spGetRoleDetails", _dBService.Connection))
@@ -177,11 +194,12 @@ namespace TiffinManagement.Repository.Services
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.MapGetRoleBaseDetails(dataReader);
                     _dBService.Connection.Close();
 
                 };
 
-                return dataReader;
+                return response;
             }
             catch (Exception)
             {

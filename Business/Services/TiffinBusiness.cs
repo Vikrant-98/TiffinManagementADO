@@ -23,9 +23,7 @@ namespace Business.Services
         {
             try
             {
-                 SqlDataReader? dataReader = await _tiffinServices.GetAllTiffin().ConfigureAwait(false);
-                 List<TiffinDetails>? TiffinList = _databaseMapper.GetAllTiffin(dataReader);
-                return TiffinList;
+                 return await _tiffinServices.GetAllTiffin().ConfigureAwait(false);                 
             }
             catch (Exception)
             {
@@ -48,9 +46,8 @@ namespace Business.Services
                     Price = addTiffin.Price,
                 };
 
-                SqlDataReader? dataReader = await _tiffinServices.AddTiffin(addTiffinModifier,Id).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _tiffinServices.AddTiffin(addTiffinModifier,Id).ConfigureAwait(false);
+                
             }
             catch (Exception)
             {
@@ -64,9 +61,7 @@ namespace Business.Services
             try
             {
                 var ImageUrl = await PrepareImageUrl(editTiffin.Image).ConfigureAwait(false);
-                SqlDataReader? dataReader = await _tiffinServices.EditTiffin(editTiffin, ImageUrl).ConfigureAwait(false);
-                AddResponse? response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _tiffinServices.EditTiffin(editTiffin, ImageUrl).ConfigureAwait(false);                
             }
             catch (Exception)
             {
@@ -76,13 +71,10 @@ namespace Business.Services
         }
         
         public async Task<AddResponse> DeleteTiffin(int id)
-        {
-            
+        {            
             try
             {
-                SqlDataReader? dataReader = await _tiffinServices.DeleteTiffin(id).ConfigureAwait(false);
-                AddResponse?  response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
-                return response;
+                return await _tiffinServices.DeleteTiffin(id).ConfigureAwait(false);                
             }
             catch (Exception)
             {

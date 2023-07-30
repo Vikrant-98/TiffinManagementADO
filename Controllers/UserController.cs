@@ -126,6 +126,22 @@ namespace TiffinManagement.Controllers
             return Result;
         }
 
+        [HttpGet("GetActiveUserDetail")]
+        [Authorize(Roles = "Admin")]
+        public async Task<List<Login>> GetActiveUserDetail()
+        {
+            List<Login>? Result = new List<Login>();
+            try
+            {
+                Result = await _userBusiness.GetUserActiveDetails().ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return Result;
+        }
+
         private string GenerateToken(Login Info)
         {
             try

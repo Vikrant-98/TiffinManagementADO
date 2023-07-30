@@ -1,16 +1,17 @@
 ﻿using System.Data.SqlClient;
 using TiffinManagement.ModelServices.Request;
+using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagement.Repository.Interface
 {
     public interface IUserService
     {
-        Task<SqlDataReader> AddUserAddress(UserAddress Address, int UserId);
-        Task<SqlDataReader> UpdateUser(UpdateUser User);
-        Task<SqlDataReader> UserLogin(UserLogin User);
-        Task<SqlDataReader> AddUser(UserRegistration User);
-        Task<SqlDataReader> AddAddress(TiffinAddress Address, int UserId);
-        Task<SqlDataReader> GetUserActiveDetails();
-        Task<SqlDataReader> GetRoleBaseDetails(string Role);
+        Task<AddResponse> AddUserAddress(UserAddress Address, int UserId);
+        Task<AddResponse> UpdateUser(UpdateUser User);
+        Task<Login> UserLogin(UserLogin User);
+        Task<AddResponse> AddUser(UserRegistration User);
+        Task<AddResponse> AddAddress(TiffinAddress Address, int UserId);
+        Task<List<Login>> GetUserActiveDetails();
+        Task<List<Login>> GetRoleBaseDetails(string Role);
     }
 }
