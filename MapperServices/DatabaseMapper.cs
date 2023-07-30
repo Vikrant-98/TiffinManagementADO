@@ -102,6 +102,7 @@ namespace TiffinManagement.MapperServices
                     AadharNumber = dataReader["AadharNumber"].ToString(),
                     EmailId = dataReader["EmailId"].ToString(),
                     Role = dataReader["Role"].ToString(),
+                    Id = Convert.ToInt32(dataReader["id"]),
                 };
             }
             return addResponse;
