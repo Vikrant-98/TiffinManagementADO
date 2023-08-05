@@ -9,7 +9,7 @@ namespace TiffinManagement.Repository.Interface
         Task<List<OrdersDetails>> GetAllOrders();
         Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId);
         Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder);
-        Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder);
+        Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder, int UserId);
         Task<AddResponse> DeleteOrdersByUserId(int OrderId, int UserId);
     }
 }

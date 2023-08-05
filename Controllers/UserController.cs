@@ -64,7 +64,7 @@ namespace TiffinManagement.Controllers
             try
             {
                 var user = HttpContext.User;
-                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserID").Value);
                 Result = await _userBusiness.UpdateUser(User, userId).ConfigureAwait(false);
             }
             catch (Exception)
@@ -82,7 +82,7 @@ namespace TiffinManagement.Controllers
             try
             {
                 var user = HttpContext.User;
-                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserID").Value);
                 Result = await _userBusiness.AddUserAddress(UserAddress, userId).ConfigureAwait(false);
             }
             catch (Exception)
@@ -100,7 +100,7 @@ namespace TiffinManagement.Controllers
             try
             {
                 var user = HttpContext.User;
-                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserID").Value);
                 Result = await _userBusiness.AddAddress(UserAddress, userId).ConfigureAwait(false);
             }
             catch (Exception)

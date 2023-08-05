@@ -2,6 +2,7 @@
 {
     public class OrdersDetails
     {
+        public int OrderId { get; set; }
         public string TiffinName { get; set; }
         public string TiffinDescription { get; set; }
         public string ImageURL { get; set; }

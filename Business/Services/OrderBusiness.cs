@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-using TiffinManagement.Business.Interface;
-using TiffinManagement.MapperServices;
+﻿using TiffinManagement.Business.Interface;
 using TiffinManagement.ModelServices.Request;
 using TiffinManagement.ModelServices.Response;
 using TiffinManagement.Repository.Interface;
@@ -10,11 +8,9 @@ namespace TiffinManagement.Business.Services
     public class OrderBusiness : IOrderBusiness
     {
         readonly private IOrderServices _orderServices;
-        private readonly DatabaseMapper _databaseMapper;
-        public OrderBusiness(IOrderServices orderServices, DatabaseMapper databaseMapper) 
+        public OrderBusiness(IOrderServices orderServices) 
         {
             _orderServices = orderServices;
-            _databaseMapper = databaseMapper;
         }
 
         public async Task<List<OrdersDetails>> GetAllOrders() 
@@ -22,7 +18,7 @@ namespace TiffinManagement.Business.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
-                var Details = await _orderServices.GetAllOrders().ConfigureAwait(false);
+                 OrderDetails = await _orderServices.GetAllOrders().ConfigureAwait(false);
                               
             }
             catch (Exception)
@@ -45,12 +41,21 @@ namespace TiffinManagement.Business.Services
             }
         }
         
-        public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder)
+        public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetailsResponse addOrder)
         {
             AddResponse? AddResponse = new AddResponse();
             try
             {
-               return await _orderServices.AddOrdersByUserId(UserId,addOrder).ConfigureAwait(false);
+                AddOrderDetails addOrderDetails = new AddOrderDetails()
+                {
+                    AddressId = addOrder.AddressId,
+                    EndDate = DateTime.Parse(addOrder.EndDate),
+                    StartDate = DateTime.Parse(addOrder.StartDate),
+                    PaymentMode = addOrder.PaymentMode,
+                    TiffinId = addOrder.TiffinId,
+                };
+
+               return await _orderServices.AddOrdersByUserId(UserId, addOrderDetails).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -58,12 +63,12 @@ namespace TiffinManagement.Business.Services
             }
         }
         
-        public async Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder)
+        public async Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder, int UserId)
         {
             AddResponse? AddResponse = new AddResponse();
             try
             {
-                return await _orderServices.UpdateOrdersStatus(updateOrder).ConfigureAwait(false);                
+                return await _orderServices.UpdateOrdersStatus(updateOrder,UserId).ConfigureAwait(false);                
             }
             catch (Exception)
             {

@@ -135,7 +135,7 @@ namespace TiffinManagement.Repository.Services
                 using (SqlCommand command = new SqlCommand("spAddUserAddress", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Adderess", Address.Address);
+                    command.Parameters.AddWithValue("@Address", Address.Address);
                     command.Parameters.AddWithValue("@AreaId", Address.AreaId);
                     command.Parameters.AddWithValue("@UserId", UserId);
 

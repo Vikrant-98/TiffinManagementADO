@@ -58,7 +58,7 @@ namespace Repository.Services
                     command.Parameters.AddWithValue("@ImageUrl", addTiffin.ImageURL);
                     command.Parameters.AddWithValue("@Description", addTiffin.Description);
                     command.Parameters.AddWithValue("@Address", addTiffin.TiffinAddress);
-                    command.Parameters.AddWithValue("@userId", Id);
+                    command.Parameters.AddWithValue("@AdminId", Id);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();

@@ -24,7 +24,7 @@ namespace TiffinManagement.Repository.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
-                using (SqlCommand command = new SqlCommand("spGetTiffinDetails", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spGetOrderDetails", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -102,17 +102,17 @@ namespace TiffinManagement.Repository.Services
 
         }
         
-        public async Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder)
+        public async Task<AddResponse> UpdateOrdersStatus(UpdateOrder updateOrder,int UserId)
         {
             SqlDataReader dataReader;
             AddResponse response = new AddResponse();
             try
             {
-                using (SqlCommand command = new SqlCommand("spAddOrderDetails", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spUpdateOrderDetails", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@OrderID", updateOrder.OrderId);
-                    command.Parameters.AddWithValue("@DeliveryHolderId", updateOrder.DeliveryHolderId);
+                    command.Parameters.AddWithValue("@DeliveryHolderId", UserId);
                     command.Parameters.AddWithValue("@Status", updateOrder.Status);
 
                     _dBService.Connection.Open();

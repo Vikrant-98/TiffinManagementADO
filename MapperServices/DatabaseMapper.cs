@@ -38,7 +38,7 @@ namespace TiffinManagement.MapperServices
             {
                 addResponse  = new AddResponse()
                 {
-                    Message = dataReader["ResponseMessage"].ToString(),
+                    Message = dataReader["Message"].ToString(),
                 };
             }
             return addResponse;
@@ -68,6 +68,7 @@ namespace TiffinManagement.MapperServices
             {
                 ordersDetails.Add(new OrdersDetails()
                 {
+                    OrderId = Convert.ToInt32(dataReader["Id"]),
                     FirstName = dataReader["FirstName"].ToString(),
                     TiffinName = dataReader["TiffinName"].ToString(),
                     TiffinDescription = dataReader["TiffinDescription"].ToString(),

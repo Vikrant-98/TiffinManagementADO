@@ -7,8 +7,8 @@ namespace TiffinManagement.Business.Interface
     {
         Task<List<OrdersDetails>> GetAllOrders();
         Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId);
-        Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder);
-        Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder);
+        Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetailsResponse addOrder);
+        Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder, int UserId);
         Task<AddResponse> DeleteOrdersByUserId(int OrderId, int UserId);
     }
 }
