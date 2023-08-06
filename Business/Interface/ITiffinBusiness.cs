@@ -9,5 +9,6 @@ namespace Business.Interface
         Task<AddResponse> AddTiffin(AddTiffinRequest addTiffin, int Id,IFormFile formFile);
         Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin,IFormFile formFile);
         Task<AddResponse> DeleteTiffin(int id);
+        Task<AddResponse> AddReview(AddTiffinReview addTiffinReview, int Id);
     }
 }

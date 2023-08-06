@@ -91,6 +91,24 @@ namespace TiffinManagementAPI.Controllers
             return Result;
         }
 
+        [HttpPost("AddTiffinReview")]
+        [Authorize(Roles = "Customer")]
+        public async Task<AddResponse> AddTiffinReview([FromBody] AddTiffinReview addTiffinReview)
+        {
+            AddResponse? Response = new AddResponse();
+            try
+            {
+                var user = HttpContext.User;
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserID").Value);
+                Response = await _TiffinBusiness.AddReview(addTiffinReview, userId).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return Response;
+        }
+
         [HttpGet("GetAllOrders")]
         [Authorize(Roles = "Admin,Delivery")]
         public async Task<List<OrdersDetails>> GetAllOrders()
@@ -109,7 +127,7 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpGet("GetAllOrdersByUserId")]
-        [Authorize(Roles = "Customer,Delivery")]
+        [Authorize(Roles = "Customer")]
         public async Task<List<OrdersDetails>> GetAllOrdersByUserId()
         {
             List<OrdersDetails> ordersDetails = new List<OrdersDetails>();

@@ -2,7 +2,6 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Repository.Interface;
-using System.Data.SqlClient;
 using TiffinManagement.MapperServices;
 using TiffinManagement.ModelServices.Request;
 using TiffinManagement.ModelServices.Response;
@@ -23,7 +22,26 @@ namespace Business.Services
         {
             try
             {
-                 return await _tiffinServices.GetAllTiffin().ConfigureAwait(false);                 
+                List<TiffinDetails> tiffinDetails = new List<TiffinDetails>();
+                List<TiffinDetails>? listTiffin =  await _tiffinServices.GetAllTiffin().ConfigureAwait(false);
+                var TiffinWithModeRating = listTiffin.GroupBy(x => x.Id);
+                foreach (var item in TiffinWithModeRating)
+                {
+                    int avgRating = 0;
+                    try
+                    {
+                        avgRating = item.Sum(x => x.Rating) / item.Count();
+                    }
+                    catch (Exception)
+                    {
+                        avgRating = 0;
+                    }
+                    
+                    var tempTiffin = item.First();
+                    tempTiffin.Rating = avgRating;
+                    tiffinDetails.Add(tempTiffin);
+                }
+                return tiffinDetails;
             }
             catch (Exception)
             {
@@ -75,6 +93,21 @@ namespace Business.Services
             try
             {
                 return await _tiffinServices.DeleteTiffin(id).ConfigureAwait(false);                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<AddResponse> AddReview(AddTiffinReview addTiffinReview, int Id)
+        {
+            try
+            {
+
+                return await _tiffinServices.AddTiffinRatings(addTiffinReview, Id).ConfigureAwait(false);
+
             }
             catch (Exception)
             {

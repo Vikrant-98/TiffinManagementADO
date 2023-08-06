@@ -10,5 +10,6 @@ namespace Repository.Interface
         Task<AddResponse> AddTiffin(AddTiffin addTiffin,int Id);
         Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin,string ImageUrl);
         Task<AddResponse> DeleteTiffin(int id);
+        Task<AddResponse> AddTiffinRatings(AddTiffinReview addTiffin, int Id);
     }
 }

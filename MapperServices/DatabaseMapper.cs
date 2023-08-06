@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagement.MapperServices
@@ -15,11 +16,13 @@ namespace TiffinManagement.MapperServices
                     bookList.Add(new TiffinDetails
                     {
                         Id = Convert.ToInt32(dataReader["Id"]),
+                        Rating = dataReader.IsDBNull("Rating") ? 0 : Convert.ToInt32(dataReader["Rating"]),
                         Name = dataReader["TiffinName"].ToString(),
                         Description = dataReader["TiffinDescription"].ToString(),
                         Price = Convert.ToInt32(dataReader["Price"]),
                         Image = dataReader["ImageURL"].ToString(),
-                        Area = dataReader["Area"].ToString()
+                        Area = dataReader["Area"].ToString(),
+                        Review = dataReader.IsDBNull("Review") ? string.Empty : dataReader["Review"].ToString()
                     });
                 }
                 return bookList;

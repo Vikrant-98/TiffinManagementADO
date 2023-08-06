@@ -19,4 +19,11 @@
     {
         public string ImageURL { get; set; }
     }
+
+    public class AddTiffinReview 
+    {
+        public int TiffinId { get; set; }
+        public int Rating { get; set; }
+        public string Review { get; set; }
+    }
 }

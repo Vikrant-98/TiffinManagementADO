@@ -75,7 +75,37 @@ namespace Repository.Services
             }
             
         }
-        
+
+        public async Task<AddResponse> AddTiffinRatings(AddTiffinReview addTiffin, int Id)
+        {
+            SqlDataReader dataReader;
+            AddResponse? response = new AddResponse();
+            try
+            {
+                using (SqlCommand command = new SqlCommand("spAddTiffinDetails", _dBService.Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Rating", addTiffin.Rating);
+                    command.Parameters.AddWithValue("@Review", addTiffin.Review);
+                    command.Parameters.AddWithValue("@UserId",Id);
+                    command.Parameters.AddWithValue("@TiffinId", addTiffin.TiffinId);
+
+                    _dBService.Connection.Open();
+                    dataReader = await command.ExecuteReaderAsync();
+                    response = _databaseMapper.AddUpdateDeleteResponse(dataReader);
+                    _dBService.Connection.Close();
+
+                };
+
+                return response;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin, string ImageUrl)
         {
             SqlDataReader dataReader;
