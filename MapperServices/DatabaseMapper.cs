@@ -39,6 +39,7 @@ namespace TiffinManagement.MapperServices
                 addResponse  = new AddResponse()
                 {
                     Message = dataReader["Message"].ToString(),
+                    Status = Convert.ToBoolean( dataReader["Message"])
                 };
             }
             return addResponse;
