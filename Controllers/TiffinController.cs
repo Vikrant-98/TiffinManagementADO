@@ -19,7 +19,7 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpGet("GetAllTiffin")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Customer")]
         public async Task<List<TiffinDetails>> GetAllTiffin()
         {
             List<TiffinDetails> tiffinDetails = new List<TiffinDetails>();
@@ -164,7 +164,7 @@ namespace TiffinManagementAPI.Controllers
         }
 
         [HttpGet("GetAllAddress")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Customer")]
         public async Task<List<AddressResponse>> GetAllAddress()
         {
             List<AddressResponse> ordersDetails = new List<AddressResponse>();

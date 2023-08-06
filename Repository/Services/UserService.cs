@@ -148,7 +148,7 @@ namespace TiffinManagement.Repository.Services
 
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
