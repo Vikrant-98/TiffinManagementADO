@@ -10,7 +10,7 @@ namespace TiffinManagement.Business.Interface
         Task<AddResponse> AddUser(UserRegistration User);
         Task<AddResponse> AddUserAddress(UserAddress UserAddress, int UserId);
         Task<AddResponse> AddAddress(TiffinAddress TiffinAddress, int UserId);
-        Task<AddResponse> UpdateUser(UserRegistration TiffinAddress, int UserId);
+        Task<AddResponse> UpdateUser(User TiffinAddress, int UserId);
         Task<List<Login>> GetRoleBaseDetails(string Role);
     }
 }

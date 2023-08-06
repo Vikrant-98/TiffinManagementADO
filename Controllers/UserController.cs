@@ -58,7 +58,7 @@ namespace TiffinManagement.Controllers
 
         [HttpPost("UpdateUser")]
         [Authorize(Roles = "Customer")]
-        public async Task<AddResponse> UpdateUser([FromBody] UserRegistration User)
+        public async Task<AddResponse> UpdateUser([FromBody] User User)
         {
             AddResponse? Result = new AddResponse();
             try

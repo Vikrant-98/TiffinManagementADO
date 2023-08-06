@@ -84,14 +84,13 @@ namespace TiffinManagement.Business.Services
 
         }
         
-        public async Task<AddResponse> UpdateUser(UserRegistration TiffinAddress, int UserId)
+        public async Task<AddResponse> UpdateUser(User TiffinAddress, int UserId)
         {
             try
             {
                 UpdateUser updateUser = new UpdateUser() 
                 {
                     Id = UserId,
-                    EmailID = TiffinAddress.EmailID,
                     AadharNumber = TiffinAddress.AadharNumber,
                     FirstName = TiffinAddress.FirstName,
                     LastName = TiffinAddress.LastName,
