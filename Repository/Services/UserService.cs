@@ -159,10 +159,10 @@ namespace TiffinManagement.Repository.Services
             AddResponse? response = new AddResponse();
             try
             {
-                using (SqlCommand command = new SqlCommand("spAddUserAddress", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spAddAddress", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Adderess", Address.Address);
+                    command.Parameters.AddWithValue("@Address", Address.Address);
                     command.Parameters.AddWithValue("@Area", Address.Area);
                     command.Parameters.AddWithValue("@Pin", Address.Pin);
                     command.Parameters.AddWithValue("@UserId", UserId);
@@ -176,7 +176,7 @@ namespace TiffinManagement.Repository.Services
 
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
