@@ -127,6 +127,43 @@ namespace TiffinManagementAPI.Controllers
             return ordersDetails;
         }
 
+        [HttpGet("GetAllAddressByUserId")]
+        [Authorize(Roles = "Customer")]
+        public async Task<List<UserAddressResponse>> GetAllAddressByUserId()
+        {
+            List<UserAddressResponse> ordersDetails = new List<UserAddressResponse>();
+            try
+            {
+                var user = HttpContext.User;
+                int userId = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "UserID").Value);
+                ordersDetails = await _orderBusiness.GetAllAddressByUserId(userId).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return ordersDetails;
+        }
+
+        [HttpGet("GetAllAddress")]
+        [Authorize(Roles = "Admin")]
+        public async Task<List<AddressResponse>> GetAllAddress()
+        {
+            List<AddressResponse> ordersDetails = new List<AddressResponse>();
+            try
+            {
+                var user = HttpContext.User;
+                ordersDetails = await _orderBusiness.GetAllAddress().ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return ordersDetails;
+        }
+
+
         [HttpPost("UpdateOrderStatus")]
         [Authorize(Roles = "Delivery")]
         public async Task<AddResponse> UpdateOrderStatus([FromBody] UpdateOrder updateOrder)

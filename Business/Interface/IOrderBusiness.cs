@@ -10,5 +10,7 @@ namespace TiffinManagement.Business.Interface
         Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetailsResponse addOrder);
         Task<AddResponse> UpdateOrderStatus(UpdateOrder updateOrder, int UserId);
         Task<AddResponse> DeleteOrdersByUserId(int OrderId, int UserId);
+        Task<List<UserAddressResponse>> GetAllAddressByUserId(int UserId);
+        Task<List<AddressResponse>> GetAllAddress();
     }
 }

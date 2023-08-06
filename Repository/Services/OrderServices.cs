@@ -70,6 +70,57 @@ namespace TiffinManagement.Repository.Services
 
         }
         
+        public async Task<List<UserAddressResponse>> GetAllAddressByUserId(int UserId)
+        {
+            SqlDataReader dataReader;
+            List<UserAddressResponse>? AddressResponse = new List<UserAddressResponse>();
+            try
+            {
+                using (SqlCommand command = new SqlCommand("spGetAddressDetailsByUserId", _dBService.Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@UserId", UserId);
+                    _dBService.Connection.Open();
+                    dataReader = await command.ExecuteReaderAsync();
+                    AddressResponse = _databaseMapper.GetAllUserAddress(dataReader);
+                    _dBService.Connection.Close();
+
+                };
+
+                return AddressResponse;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<List<AddressResponse>> GetAllAddress()
+        {
+            SqlDataReader dataReader;
+            List<AddressResponse>? AddressResponse = new List<AddressResponse>();
+            try
+            {
+                using (SqlCommand command = new SqlCommand("spGetAddressDetails", _dBService.Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    _dBService.Connection.Open();
+                    dataReader = await command.ExecuteReaderAsync();
+                    AddressResponse = _databaseMapper.GetAllAddress(dataReader);
+                    _dBService.Connection.Close();
+
+                };
+
+                return AddressResponse;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetails addOrder) 
         {
             SqlDataReader dataReader;

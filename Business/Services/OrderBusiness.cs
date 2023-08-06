@@ -41,6 +41,32 @@ namespace TiffinManagement.Business.Services
             }
         }
         
+        public async Task<List<UserAddressResponse>> GetAllAddressByUserId(int UserId)
+        {
+            List<UserAddressResponse>? OrderDetails = new List<UserAddressResponse>();
+            try
+            {
+                return await _orderServices.GetAllAddressByUserId(UserId).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+        public async Task<List<AddressResponse>> GetAllAddress()
+        {
+            List<AddressResponse>? OrderDetails = new List<AddressResponse>();
+            try
+            {
+                return await _orderServices.GetAllAddress().ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
         public async Task<AddResponse> AddOrdersByUserId(int UserId, AddOrderDetailsResponse addOrder)
         {
             AddResponse? AddResponse = new AddResponse();

@@ -82,6 +82,39 @@ namespace TiffinManagement.MapperServices
             return ordersDetails;
         }
 
+        public List<UserAddressResponse> GetAllUserAddress(SqlDataReader dataReader)
+        {
+            List<UserAddressResponse> ordersDetails = new List<UserAddressResponse>();
+            while (dataReader.Read())
+            {
+                ordersDetails.Add(new UserAddressResponse()
+                {
+                    AddressId = Convert.ToInt32(dataReader["AreaId"]),
+                    Address = dataReader["Address"].ToString(),
+                    UserAddress = dataReader["UserAddress"].ToString(),
+                    Area = dataReader["Area"].ToString(),
+                    Pin = dataReader["Pin"].ToString()
+                });
+            }
+            return ordersDetails;
+        }
+
+        public List<AddressResponse> GetAllAddress(SqlDataReader dataReader)
+        {
+            List<AddressResponse> ordersDetails = new List<AddressResponse>();
+            while (dataReader.Read())
+            {
+                ordersDetails.Add(new AddressResponse()
+                {
+                    AddressId = Convert.ToInt32(dataReader["Id"]),
+                    Address = dataReader["Address"].ToString(),
+                    Area = dataReader["Area"].ToString(),
+                    Pin = dataReader["Pin"].ToString()
+                });
+            }
+            return ordersDetails;
+        }
+
         public OrdersDetails GetAllOrdersById(SqlDataReader dataReader)
         {
             OrdersDetails ordersDetails = new OrdersDetails();

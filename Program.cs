@@ -31,11 +31,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITiffinServices, TiffinServices>();
 builder.Services.AddTransient<IOrderServices, OrderServices>();
-builder.Services.AddTransient<IDeliveryServices, DeliveryServices>();
 builder.Services.AddTransient<IUserBusiness, UserBusiness>();
 builder.Services.AddTransient<ITiffinBusiness, TiffinBusiness>();
 builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
-builder.Services.AddTransient<IDeliveryBusiness, DeliveryBusiness>();
 builder.Services.AddTransient<DatabaseMapper>();
 builder.Services.AddTransient<DBService>(_=> new DBService(builder.Configuration.GetSection("MasterConnection").Get<string>()));
 
