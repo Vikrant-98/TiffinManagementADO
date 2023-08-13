@@ -33,7 +33,12 @@ namespace TiffinManagement.Business.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
-                return await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
+                List<OrdersDetails>? result = await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
+                foreach (OrdersDetails item in result)
+                {
+                    item.TotalDays = (item.EndDate - item.StartDate).TotalDays + 1;
+                }
+                return result;
             }
             catch (Exception)
             {

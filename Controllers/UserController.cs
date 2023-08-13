@@ -110,14 +110,14 @@ namespace TiffinManagement.Controllers
             return Result;
         }
 
-        [HttpPost("GetRoleBaseDetails")]
+        [HttpGet("GetRoleBaseDetails")]
         [Authorize(Roles = "Admin")]
-        public async Task<List<Login>> GetRoleBaseDetails(string UserAddress)
+        public async Task<List<Login>> GetRoleBaseDetails(string UserType)
         {
             List<Login>? Result = new List<Login>();
             try
             {
-                Result = await _userBusiness.GetRoleBaseDetails(UserAddress).ConfigureAwait(false);
+                Result = await _userBusiness.GetRoleBaseDetails(UserType).ConfigureAwait(false);
             }
             catch (Exception)
             {

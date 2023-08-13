@@ -82,7 +82,7 @@ namespace Repository.Services
             AddResponse? response = new AddResponse();
             try
             {
-                using (SqlCommand command = new SqlCommand("spAddTiffinDetails", _dBService.Connection))
+                using (SqlCommand command = new SqlCommand("spAddRating", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Rating", addTiffin.Rating);

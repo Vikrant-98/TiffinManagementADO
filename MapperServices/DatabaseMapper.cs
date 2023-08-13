@@ -73,13 +73,15 @@ namespace TiffinManagement.MapperServices
                 ordersDetails.Add(new OrdersDetails()
                 {
                     OrderId = Convert.ToInt32(dataReader["Id"]),
+                    TiffinId = Convert.ToInt32(dataReader["TiffinId"]),
                     FirstName = dataReader["FirstName"].ToString(),
                     TiffinName = dataReader["TiffinName"].ToString(),
                     TiffinDescription = dataReader["TiffinDescription"].ToString(),
                     Price = dataReader["Price"].ToString(),
                     ImageURL = dataReader["ImageURL"].ToString(),
-                    EndDate = dataReader["EndDate"].ToString(),
-                    StartDate = dataReader["StartDate"].ToString(),
+                    OrderStatus = dataReader["Status"].ToString(),
+                    EndDate = Convert.ToDateTime(dataReader["EndDate"]),
+                    StartDate = Convert.ToDateTime(dataReader["StartDate"]),
                 });
             }
             return ordersDetails;
@@ -130,8 +132,8 @@ namespace TiffinManagement.MapperServices
                     TiffinDescription = dataReader["TiffinDescription"].ToString(),
                     Price = dataReader["Price"].ToString(),
                     ImageURL = dataReader["ImageURL"].ToString(),
-                    EndDate = dataReader["EndDate"].ToString(),
-                    StartDate = dataReader["StartDate"].ToString(),
+                    EndDate = Convert.ToDateTime(dataReader["EndDate"]),
+                    StartDate = Convert.ToDateTime(dataReader["StartDate"]),
                 };
             }
             return ordersDetails;
@@ -162,6 +164,7 @@ namespace TiffinManagement.MapperServices
             {
                 addResponse.Add(new Login()
                 {
+                    Id = Convert.ToInt32(dataReader["Id"]),
                     FirstName = dataReader["FirstName"].ToString(),
                     LastName = dataReader["LastName"].ToString(),
                     AadharNumber = dataReader["AadharNumber"].ToString(),
