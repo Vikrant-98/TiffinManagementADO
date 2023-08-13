@@ -74,11 +74,15 @@ namespace Business.Services
 
         }
         
-        public async Task<AddResponse> EditTiffin(AddTiffinModifier editTiffin, IFormFile Image)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier editTiffin, IFormFile? Image)
         {
             try
             {
-                var ImageUrl = await PrepareImageUrl(Image).ConfigureAwait(false);
+                string? ImageUrl = string.Empty;
+                if (Image != null)
+                {
+                    ImageUrl = await PrepareImageUrl(Image).ConfigureAwait(false);
+                }                
                 return await _tiffinServices.EditTiffin(editTiffin, ImageUrl).ConfigureAwait(false);                
             }
             catch (Exception)

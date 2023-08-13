@@ -56,7 +56,7 @@ namespace TiffinManagementAPI.Controllers
 
         [HttpPost("EditTiffin")]
         [Authorize(Roles = "Admin")]
-        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin, IFormFile Image)
+        public async Task<AddResponse> EditTiffin(AddTiffinModifier addTiffin, IFormFile? Image)
         {
             AddResponse? Result = new AddResponse();
             try
