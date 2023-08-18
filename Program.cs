@@ -35,7 +35,7 @@ builder.Services.AddTransient<IUserBusiness, UserBusiness>();
 builder.Services.AddTransient<ITiffinBusiness, TiffinBusiness>();
 builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
 builder.Services.AddTransient<DatabaseMapper>();
-builder.Services.AddTransient<DBService>(_=> new DBService(builder.Configuration.GetSection("MasterConnection").Get<string>()));
+builder.Services.AddTransient<DBService>(_=> new DBService(builder.Configuration.GetSection("ConnectionString").Get<string>()));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

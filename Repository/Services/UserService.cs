@@ -106,11 +106,10 @@ namespace TiffinManagement.Repository.Services
                 using (SqlCommand command = new SqlCommand("spUpdateUserDetails", _dBService.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Id", User.Id);
+                    command.Parameters.AddWithValue("@UserID", User.Id);
                     command.Parameters.AddWithValue("@FirstName", User.FirstName);
                     command.Parameters.AddWithValue("@LastName", User.LastName);
                     command.Parameters.AddWithValue("@Password", User.Password);
-                    command.Parameters.AddWithValue("@AadharNumber", User.AadharNumber);
 
                     _dBService.Connection.Open();
                     dataReader = await command.ExecuteReaderAsync();

@@ -12,6 +12,6 @@ namespace TiffinManagement.Repository.Interface
         Task<AddResponse> AddUser(UserRegistration User);
         Task<AddResponse> AddAddress(TiffinAddress Address, int UserId);
         Task<List<Login>> GetUserActiveDetails();
-        Task<List<Login>> GetRoleBaseDetails(string Role);
+        Task<List<Login>> GetRoleBaseDetails(string Role);        
     }
 }
