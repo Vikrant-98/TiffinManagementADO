@@ -19,7 +19,10 @@ namespace TiffinManagement.Business.Services
             try
             {
                  OrderDetails = await _orderServices.GetAllOrders().ConfigureAwait(false);
-                              
+                foreach (OrdersDetails item in OrderDetails)
+                {
+                    item.TotalDays = (item.EndDate - item.StartDate).TotalDays + 1;
+                }
             }
             catch (Exception)
             {

@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using TiffinManagement.ModelServices.Response;
 
 namespace TiffinManagement.MapperServices
@@ -70,7 +71,7 @@ namespace TiffinManagement.MapperServices
             List<OrdersDetails> ordersDetails = new List<OrdersDetails>();
             while (dataReader.Read())
             {
-                ordersDetails.Add(new OrdersDetails()
+                var result = new OrdersDetails()
                 {
                     OrderId = Convert.ToInt32(dataReader["Id"]),
                     TiffinId = Convert.ToInt32(dataReader["TiffinId"]),
@@ -80,9 +81,12 @@ namespace TiffinManagement.MapperServices
                     Price = dataReader["Price"].ToString(),
                     ImageURL = dataReader["ImageURL"].ToString(),
                     OrderStatus = dataReader["Status"].ToString(),
+                    Address = dataReader["Address"].ToString(),
+                    Area = dataReader["Area"].ToString(),
                     EndDate = Convert.ToDateTime(dataReader["EndDate"]),
-                    StartDate = Convert.ToDateTime(dataReader["StartDate"]),
-                });
+                    StartDate = Convert.ToDateTime(dataReader["StartDate"])                    
+                };
+                ordersDetails.Add(result);
             }
             return ordersDetails;
         }

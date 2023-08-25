@@ -28,9 +28,12 @@ namespace Business.Services
                 foreach (var item in TiffinWithModeRating)
                 {
                     int avgRating = 0;
+                    string rating = string.Empty;
                     try
                     {
                         avgRating = item.Sum(x => x.Rating) / item.Count();
+                        rating = item.Last().Review.ToString();
+
                     }
                     catch (Exception)
                     {
@@ -39,6 +42,7 @@ namespace Business.Services
                     
                     var tempTiffin = item.First();
                     tempTiffin.Rating = avgRating;
+                    tempTiffin.Review = rating;
                     tiffinDetails.Add(tempTiffin);
                 }
                 return tiffinDetails;

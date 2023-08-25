@@ -9,6 +9,8 @@
         public string ImageURL { get; set; }
         public string Price { get; set; }
         public string OrderStatus { get; set; }
+        public string Address { get; set; }
+        public string Area { get; set; }
         public double TotalDays { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

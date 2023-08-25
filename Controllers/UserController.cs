@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -26,13 +27,19 @@ namespace TiffinManagement.Controllers
         {
             try
             {
+                string? token = string .Empty;
                 Login? Result = await _userBusiness.UserLogin(User).ConfigureAwait(false);
-                var token = GenerateToken(Result);
-                LoginResponse loginResponse = new LoginResponse() 
+                if (Result != null)
+                {
+                    token = GenerateToken(Result);
+                    
+                }
+                LoginResponse loginResponse = new LoginResponse()
                 {
                     LoginData = Result,
                     Token = token
                 };
+
                 return loginResponse;
             }
             catch (Exception)
