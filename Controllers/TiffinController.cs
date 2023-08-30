@@ -72,7 +72,7 @@ namespace TiffinManagementAPI.Controllers
             return Result;
         }
 
-        [HttpDelete("{TiffinId}")]
+        [HttpDelete("DeleteTiffin/{TiffinId}")]
         [Authorize(Roles = "Admin")]
         public async Task<AddResponse> DeleteTiffin(int TiffinId)
         {
@@ -219,7 +219,7 @@ namespace TiffinManagementAPI.Controllers
             return ordersDetails;
         }
 
-        [HttpDelete("{OrderId}")]
+        [HttpDelete("DeleteOrder/{OrderId}")]
         [Authorize(Roles = "Customer")]
         public async Task<AddResponse> DeleteOrdersByUserId(int OrderId)
         {
