@@ -18,17 +18,19 @@ namespace TiffinManagement.Business.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
-                 OrderDetails = await _orderServices.GetAllOrders().ConfigureAwait(false);
-                foreach (OrdersDetails item in OrderDetails)
+                var result = await _orderServices.GetAllOrders().ConfigureAwait(false);
+                foreach (var item in result.GroupBy(x => x.TiffinId))
                 {
-                    item.TotalDays = (item.EndDate - item.StartDate).TotalDays + 1;
+                    var tempItem = item.LastOrDefault();
+                    tempItem.TotalDays = (tempItem.EndDate - tempItem.StartDate).TotalDays + 1;
+                    OrderDetails.Add(tempItem);
                 }
+                return OrderDetails;
             }
             catch (Exception)
             {
                 throw;
             }
-            return OrderDetails;
         }
         
         public async Task<List<OrdersDetails>> GetAllOrdersByUserId(int UserId)
@@ -36,12 +38,15 @@ namespace TiffinManagement.Business.Services
             List<OrdersDetails>? OrderDetails = new List<OrdersDetails>();
             try
             {
+                List<OrdersDetails>? outputResult = new List<OrdersDetails>();
                 List<OrdersDetails>? result = await _orderServices.GetAllOrdersByUserId(UserId).ConfigureAwait(false);
-                foreach (OrdersDetails item in result)
+                foreach (var item in result.GroupBy(x=>x.TiffinId))
                 {
-                    item.TotalDays = (item.EndDate - item.StartDate).TotalDays + 1;
+                    var tempItem = item.LastOrDefault();
+                    tempItem.TotalDays = (tempItem.EndDate - tempItem.StartDate).TotalDays + 1;
+                    outputResult.Add(tempItem);
                 }
-                return result;
+                return outputResult;
             }
             catch (Exception)
             {
